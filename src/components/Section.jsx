@@ -9,10 +9,14 @@ function Section({ children, id, title, header, subtext, bgColor }) {
       <div className="text-sf-blue  font-display text-xl font-bold">
         {title}
       </div>
-      <div className="text-3xl sm:text-5xl font-display font-bold">
+      <div
+        className={`text-3xl sm:text-5xl font-display font-bold ${bgColor === 'bg-black' ? 'text-white' : 'text-black'} mt-2`}
+      >
         {header}
       </div>
-      <p className="font-display text-xl text-light mt-2 max-w-2xl">
+      <p
+        className={`font-display text-xl mt-2 max-w-2xl ${bgColor === 'bg-black' ? 'text-white' : 'text-black'}`}
+      >
         {subtext}
       </p>
 

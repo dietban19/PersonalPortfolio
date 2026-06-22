@@ -31,24 +31,26 @@ const sections = [
     header: 'Tools and Technologies I use to build software.',
     subtext:
       'From full-stack development to automation and internal tools, I work across the technologies needed to build end-to-end solutions',
-    bgColor: 'bg-secondary',
+    bgColor: 'bg-white',
     component: <Skills />,
   },
   {
     id: 'projects',
     title: 'Projects',
     header: 'Selected Projects',
-    subtext: 'A selection of projects that showcase my skills and experience.',
+    subtext:
+      'A few projects tha reflect my work across full-stack development, automation, and internal tools.',
     bgColor: 'bg-secondary',
 
     component: <Projects />,
   },
   {
     id: 'experience',
-    title: 'Experience',
+    title: 'Career Overview',
     header: 'Work Experience',
-    subtext: 'A summary of my professional experience and accomplishments.',
-    bgColor: 'bg-secondary',
+    subtext:
+      'A track record of building software solutions, improving processes, and delivering real impact',
+    bgColor: 'bg-black',
     component: <WorkExperience />,
   },
   {
