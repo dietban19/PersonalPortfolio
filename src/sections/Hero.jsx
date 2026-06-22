@@ -3,22 +3,35 @@ import Button from '../components/Button';
 
 function Hero() {
   return (
-    <div className="flex  flex-col items-center text-white  ">
-      <div className="text-secondary-txt-dark font-display">Hi, I'm</div>
+    <section className="flex min-h-screen items-center justify-center bg-apple-bg px-6 text-apple-headline sm:px-8 lg:px-16">
+      <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
+        <h1 className="text-apple-hero md:text-apple-hero-md lg:text-apple-hero-lg font-semibold font-apple-display pb-2">
+          Dieter Banaag
+        </h1>
 
-      <h1 className="text-4xl  sm:text-5xl font-display ">Dieter Banaag</h1>
-      <h2 className="text-sf-text text-3xl font-light">Software Engineer</h2>
+        {/* <p className="mb-3 font-display text-xl font-medium tracking-[-0.01em] text-apple-body sm:text-2xl">
+          Software Engineer
+        </p> */}
+        {/* <div className="text-4xl font-extralight">Hello</div> */}
 
-      <p className="mt-4 text-lg text-white font-thin sm:text-xl text-center">
-        I'm a software engineer specializing in building exceptional digital
-        experiences. Currently, I'm focused on building responsive web
-        applications.
-      </p>
-      <div className="flex gap-2 p-8">
-        <Button filled={'white'}>Learn More</Button>
-        <Button filled>Get in Touch</Button>
+        <p className="text-apple-hero-sub font-apple-display font-normal max-w-60">
+          {/* I'm a software engineer specializing in building exceptional digital
+          experiences. Currently, I'm focused on building responsive web
+          applications. */}
+          A software engineer focused on responsive interfaces, clean front-end
+          systems, and details that make products feel effortless.
+        </p>
+
+        <div className="mt-8 flex  gap-4 sm:flex-row">
+          <Button filled={false} white>
+            Learn More
+          </Button>
+          <Button filled white={true}>
+            Get in Touch
+          </Button>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 

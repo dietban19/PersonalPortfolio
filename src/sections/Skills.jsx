@@ -1,5 +1,74 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Icon } from '@iconify/react';
+
+function useInView(options = {}) {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(element);
+        }
+      },
+      {
+        threshold: 0.15,
+        ...options,
+      },
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [options]);
+
+  return [ref, isVisible];
+}
+
+function SkillGroup({ group, index }) {
+  const [ref, isVisible] = useInView();
+
+  return (
+    <section
+      ref={ref}
+      className={`transition-all duration-700 ease-out motion-reduce:transition-none ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      }`}
+      style={{
+        transitionDelay: `${index * 90}ms`,
+      }}
+    >
+      <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-2">
+        {group.type}
+      </h3>
+
+      <div className="flex flex-wrap gap-2">
+        {group.list.map((skill, skillIndex) => (
+          <div
+            key={skill.name}
+            /* Add 'skill-card' to the classes string below, and remove id="skill-icon" */
+            className={`skill-card relative flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium border border-slate-100 bg-slate-500 text-slate-700 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 transition-all duration-500 ease-out motion-reduce:transition-none ${
+              isVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-3'
+            }`}
+            data-info={skill.name}
+            style={{
+              transitionDelay: `${index * 90 + skillIndex * 35}ms`,
+            }}
+          >
+            <Icon icon={skill.icon} className="w-5 h-5 flex-shrink-0" />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 function Skills() {
   const skills = [
@@ -69,27 +138,9 @@ function Skills() {
 
   return (
     <div className="font-display max-w-6xl mx-auto py-8">
-      {/* Outer grid for the skill categories */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {skills.map((group) => (
-          <section key={group.type} className="">
-            <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-2">
-              {group.type}
-            </h3>
-
-            {/* Inner flex layout to hold the badges wrap safely on small screens */}
-            <div className="flex flex-wrap gap-2">
-              {group.list.map((skill) => (
-                <div
-                  key={skill.name}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors border border-slate-100 bg-slate-50 text-slate-700 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
-                >
-                  <Icon icon={skill.icon} className="w-5 h-5 flex-shrink-0" />
-                  <span>{skill.name}</span>
-                </div>
-              ))}
-            </div>
-          </section>
+        {skills.map((group, index) => (
+          <SkillGroup key={group.type} group={group} index={index} />
         ))}
       </div>
     </div>

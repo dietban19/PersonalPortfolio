@@ -1,0 +1,24 @@
+.fluid-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 500px;
+  background: black;
+}
+
+.fluid-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+}
+
+.fluid-content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  padding: 4rem;
+  pointer-events: none;
+}

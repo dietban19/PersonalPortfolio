@@ -5,13 +5,16 @@ function Navbar() {
 
   const nav = [
     { title: 'Home' },
+    { title: 'Skills' },
     { title: 'Projects' },
-    { title: 'About' },
+    { title: 'Experience' },
+
     { title: 'Contact' },
   ];
+
   return (
-    <header className="z-30 flex items-center justify-end sm:fixed sm:left-1/2 sm:top-3 sm:w-auto sm:-translate-x-1/2 sm:gap-2 sm:rounded-full sm:border sm:border-white/30 sm:bg-linear-to-b sm:from-white/30 sm:to-black/20 sm:px-6 sm:py-2 sm:backdrop-blur-xs sm:backdrop-saturate-150 sm:shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.4)]">
-      <span className="hidden text-sm font-semibold text-gray-800 sm:inline">
+    <header className="font-display z-50 flex items-center justify-end sm:fixed sm:left-1/2 sm:top-4 sm:w-auto sm:-translate-x-1/2 sm:gap-2 sm:rounded-full sm:border sm:border-white/15 sm:bg-neutral-950/75 sm:px-6 sm:py-2 sm:text-white sm:shadow-[0_12px_40px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.12)] sm:backdrop-blur-xl sm:backdrop-saturate-150">
+      <span className="hidden text-sm font-semibold text-white sm:inline">
         D
       </span>
 
@@ -20,9 +23,10 @@ function Navbar() {
         aria-label="Toggle navigation menu"
         aria-expanded={isMenuOpen}
         onClick={() => setIsMenuOpen((prev) => !prev)}
-        className="fixed right-3 top-4 z-40 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/45 bg-linear-to-b from-white/50 to-white/20 text-gray-300 shadow-[0_10px_24px_rgba(0,0,0,0.16),inset_0_1px_0_rgba(255,255,255,0.55)] backdrop-blur-md transition hover:from-white/60 hover:to-white/30 sm:hidden"
+        className="fixed right-3 top-4 z-50 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-neutral-950/80 text-white shadow-[0_10px_24px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] backdrop-blur-md transition hover:bg-neutral-900 sm:hidden"
       >
         <span className="sr-only">Menu</span>
+
         <span className="relative block h-4 w-5">
           <span
             className={`absolute left-0 top-0 h-0.5 w-5 rounded bg-current transition-transform duration-200 ${
@@ -42,32 +46,46 @@ function Navbar() {
         </span>
       </button>
 
-      <nav className="hidden items-center gap-1 overflow-x-auto whitespace-nowrap sm:flex">
+      <nav className="hidden items-center gap-1 overflow-x-auto whitespace-nowrap sm:flex ">
         {nav.map((item) => (
           <a
             key={item.title}
             href={`#${item.title.toLowerCase()}`}
-            className="rounded-lg px-2 py-1.5 text-xs font-medium text-gray-700 transition hover:bg-gray-100 hover:text-gray-900 sm:px-3 sm:py-2 sm:text-sm"
+            className="rounded-full px-3 py-2 text-sm font-medium text-white/75 transition hover:bg-white/10 hover:text-white"
           >
             {item.title}
           </a>
         ))}
       </nav>
 
-      {isMenuOpen && (
-        <nav className="fixed right-3 top-16 z-40 w-48 rounded-2xl border border-white/30 bg-white/95 p-2 shadow-xl backdrop-blur-md sm:hidden">
+      <button
+        type="button"
+        aria-hidden={!isMenuOpen}
+        tabIndex={isMenuOpen ? 0 : -1}
+        onClick={() => setIsMenuOpen(false)}
+        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 sm:hidden ${
+          isMenuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+      />
+
+      <nav
+        className={`fixed inset-0 z-40 h-dvh w-screen  px-6 pb-10 pt-24 text-white shadow-2xl backdrop-blur-xl transition-transform duration-400 sm:hidden ${
+          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="mx-auto flex h-full w-full max-w-md flex-col  gap-3 ">
           {nav.map((item) => (
             <a
               key={item.title}
               href={`#${item.title.toLowerCase()}`}
               onClick={() => setIsMenuOpen(false)}
-              className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100 hover:text-gray-900"
+              className="block border-b border-neutral-100/20  px-4 py-4 text-lg font-light tracking-wide text-white/90 transition hover:bg-white/10 hover:text-white"
             >
               {item.title}
             </a>
           ))}
-        </nav>
-      )}
+        </div>
+      </nav>
     </header>
   );
 }
