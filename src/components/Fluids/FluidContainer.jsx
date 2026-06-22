@@ -26,7 +26,7 @@ export default function FluidContainer({ children }) {
       // Lower = movement calms down faster.
       VELOCITY_DISSIPATION: 0.45,
 
-      PRESSURE: 0.8,
+      PRESSURE: 0.1,
       PRESSURE_ITERATIONS: 20,
 
       // Lower = less wild swirling.
@@ -66,7 +66,9 @@ export default function FluidContainer({ children }) {
 
   return (
     <div className="fluid-container">
-      <canvas ref={canvasRef} className="fluid-canvas" />
+      <div className="fluid-canvas-layer">
+        <canvas ref={canvasRef} className="fluid-canvas" />
+      </div>
 
       <div className="fluid-content">{children}</div>
     </div>

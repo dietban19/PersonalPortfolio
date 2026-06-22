@@ -3,7 +3,7 @@ import Button from '../components/Button';
 
 function Hero() {
   return (
-    <section className="flex min-h-screen items-center justify-center bg-apple-bg px-6 text-apple-headline sm:px-8 lg:px-16">
+    <section className="flex min-h-screen items-center justify-center  px-6 text-apple-headline sm:px-8 lg:px-16">
       <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
         <h1 className="text-apple-hero md:text-apple-hero-md lg:text-apple-hero-lg font-semibold font-apple-display pb-2">
           Dieter Banaag

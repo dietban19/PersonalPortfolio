@@ -1,10 +1,14 @@
+import { useState } from 'react';
+import ContactForm from '../components/ContactForm';
 import links from '../data/links';
 
 function Contact() {
+  const [showContactForm, setShowContactForm] = useState(false);
+
   return (
     <section className="px-4 py-12 sm:px-8 lg:px-16">
       <div className="mx-auto flex max-w-3xl flex-col items-center rounded-[3rem] bg-secondary px-8 py-12 text-center text-black shadow-lg sm:px-14 sm:py-16 lg:px-20 lg:py-20">
-        <p className="mb-2 text-lg md:text-2xl text-sf-blue sm:text-base font-sans font-bold">
+        <p className="mb-2 text-lg font-bold text-sf-blue sm:text-base md:text-2xl font-sans">
           Contact
         </p>
 
@@ -19,12 +23,13 @@ function Contact() {
         </p>
 
         <div className="mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-5 font-display">
-          <a
-            href={`mailto:${links.email}`}
-            className="rounded-full bg-sf-blue px-8 py-3 text-base font-medium text-white transition hover:bg-sf-blue"
+          <button
+            type="button"
+            onClick={() => setShowContactForm(true)}
+            className="rounded-full bg-sf-blue px-8 py-3 text-base font-medium text-white transition hover:bg-blue-600"
           >
-            Email Me
-          </a>
+            Contact Me
+          </button>
 
           <a
             href={links.resume}
@@ -58,6 +63,10 @@ function Contact() {
           <span className="-translate-y-px text-[22px] leading-none">›</span>
         </a>
       </div>
+
+      {showContactForm && (
+        <ContactForm onClose={() => setShowContactForm(false)} />
+      )}
     </section>
   );
 }

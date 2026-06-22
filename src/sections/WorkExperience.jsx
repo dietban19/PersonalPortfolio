@@ -34,7 +34,7 @@ function WorkItem({ job, index }) {
   return (
     <article
       ref={ref}
-      className={`flex justify-center pt-10 md:pt-24 md:gap-10 transition-all duration-700 ease-out motion-reduce:transition-none ${
+      className={`relative z-10 flex justify-center pt-10 md:pt-24 md:gap-10 transition-all duration-700 ease-out motion-reduce:transition-none ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
       }`}
       style={{
@@ -42,8 +42,8 @@ function WorkItem({ job, index }) {
       }}
     >
       <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-        <div className="h-10 absolute md:left-3 w-10 rounded-full bg-black dark:bg-black flex items-center justify-center">
-          <div className="h-4 w-4 rounded-full bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2"></div>
+        <div className="h-10 absolute md:left-3 w-10 rounded-full z-10 bg-black dark:bg-black flex items-center justify-center">
+          <div className="h-4 w-4 rounded-full bg-white z-10 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2"></div>
         </div>
 
         <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-neutral-100 dark:text-neutral-500">
@@ -180,7 +180,7 @@ function WorkExperience() {
     <section>
       <div
         ref={containerRef}
-        className="relative max-w-7xl mx-auto pb-20 text-white pt-20"
+        className="relative max-w-7xl mx-auto pb-20 text-white pt-20 isolate"
       >
         {work.map((job, index) => (
           <WorkItem
@@ -191,7 +191,7 @@ function WorkExperience() {
         ))}
 
         <div
-          className="absolute md:left-8 top-0 overflow-hidden w-[2px] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
+          className="absolute md:left-8 top-0 overflow-hidden w-[2px] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]  z-0"
           style={{ height: contentHeight }}
         >
           <div

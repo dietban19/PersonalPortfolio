@@ -9,6 +9,8 @@ import ProjectDetail from './sections/ProjectDetail';
 import Projects from './sections/Projects';
 import Skills from './sections/Skills';
 import WorkExperience from './sections/WorkExperience';
+import FluidContainer from './components/Fluids/FluidContainer';
+import ContactForm from './components/ContactForm';
 
 function App() {
   const [showAllProjects, setShowAllProjects] = useState(false);
@@ -49,6 +51,7 @@ function App() {
       bgColor: 'bg-black',
       component: <WorkExperience />,
       padding: false,
+      fluids: true,
     },
     // {
     //   id: 'contact',
@@ -61,15 +64,19 @@ function App() {
   ];
 
   return (
-    <main className="relative mx-auto min-h-screen w-full sm:pt-28 bg-black">
+    <main className="relative mx-auto min-h-screen w-full  bg-black">
+      {/* <Navbar /> */}
       <Navbar />
+
       <div>
-        <section
-          id="home"
-          className="h-screen flex items-center justify-center"
-        >
-          <Hero />
-        </section>
+        <FluidContainer>
+          <section
+            id="home"
+            className="h-screen flex items-center justify-center"
+          >
+            <Hero />
+          </section>
+        </FluidContainer>
         {sections.map((section) => (
           <Section
             key={section.id}
@@ -79,6 +86,7 @@ function App() {
             subtext={section.subtext}
             bgColor={section.bgColor}
             padding={section?.padding}
+            fluids={section?.fluids}
           >
             {section.component}
           </Section>
@@ -90,7 +98,10 @@ function App() {
           <Contact />
         </section>
       </div>
-      <Footer />
+
+      <FluidContainer>
+        <Footer />
+      </FluidContainer>
 
       {showAllProjects && (
         <AllProjects onClose={() => setShowAllProjects(false)} />

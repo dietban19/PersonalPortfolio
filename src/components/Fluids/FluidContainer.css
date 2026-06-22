@@ -1,24 +1,44 @@
 .fluid-container {
   position: relative;
-  overflow: hidden;
-  width: 100%;
-  min-height: 500px;
+  isolation: isolate;
   background: black;
+
+  /* Keep this visible so sticky still works */
+  overflow: visible;
+}
+
+.fluid-canvas-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  /* Clip the fluid background without breaking sticky */
+  overflow: hidden;
+
+  /* Important: canvas needs pointer events for hover splats */
+  pointer-events: auto;
 }
 
 .fluid-canvas {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   display: block;
-  z-index: 0;
 }
 
 .fluid-content {
   position: relative;
   z-index: 1;
-  color: white;
-  padding: 4rem;
+
+  /* Let pointer events pass through empty areas to the canvas */
   pointer-events: none;
+}
+
+/* Re-enable clicking/hovering on actual interactive content */
+.fluid-content a,
+.fluid-content button,
+.fluid-content input,
+.fluid-content textarea,
+.fluid-content select,
+.fluid-content [role='button'] {
+  pointer-events: auto;
 }

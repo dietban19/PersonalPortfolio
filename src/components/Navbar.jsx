@@ -13,7 +13,7 @@ function Navbar() {
   ];
 
   return (
-    <header className="font-display z-50 flex items-center justify-end sm:fixed sm:left-1/2 sm:top-4 sm:w-auto sm:-translate-x-1/2 sm:gap-2 sm:rounded-full sm:border sm:border-white/15 sm:bg-neutral-950/75 sm:px-6 sm:py-2 sm:text-white sm:shadow-[0_12px_40px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.12)] sm:backdrop-blur-xl sm:backdrop-saturate-150">
+    <header className="font-display z-100 flex items-center justify-end sm:fixed sm:left-1/2 sm:top-4 sm:w-auto sm:-translate-x-1/2 sm:gap-2 sm:rounded-full sm:border sm:border-white/15 sm:bg-neutral-950/75 sm:px-6 sm:py-2 sm:text-white sm:shadow-[0_12px_40px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.12)] sm:backdrop-blur-xl sm:backdrop-saturate-150">
       <span className="hidden text-sm font-semibold text-white sm:inline">
         D
       </span>

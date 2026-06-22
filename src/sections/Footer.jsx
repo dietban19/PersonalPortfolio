@@ -17,7 +17,7 @@ function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/10 bg-black px-6 pb-10 pt-12 sm:px-12 lg:px-20">
+    <footer className="border-t border-white/10  px-6 pb-10 pt-12 sm:px-12 lg:px-20">
       <div className="mx-auto max-w-7xl">
         {/* Top row */}
         <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
