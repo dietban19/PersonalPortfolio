@@ -115,7 +115,6 @@ function ProjectModal({ project, onClose }) {
           </div>
 
           {/* Call to Action */}
-          {project.link ? 'Yes' : 'No'}
           {project.link && (
             <div className="mt-10 pb-16 md:mt-12 md:pb-12">
               <a
