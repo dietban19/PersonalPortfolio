@@ -52,7 +52,7 @@ function SkillGroup({ group, index }) {
           <div
             key={skill.name}
             /* Add 'skill-card' to the classes string below, and remove id="skill-icon" */
-            className={`skill-card relative flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium border border-slate-100 bg-slate-500 text-slate-700 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 transition-all duration-500 ease-out motion-reduce:transition-none ${
+            className={`cursor-pointer skill-card relative flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium border border-slate-100  text-slate-700 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 transition-all duration-500 ease-out motion-reduce:transition-none ${
               isVisible
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-3'

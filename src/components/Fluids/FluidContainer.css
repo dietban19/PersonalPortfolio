@@ -19,6 +19,13 @@
   pointer-events: auto;
 }
 
+/* On touch devices, let vertical gestures scroll the page instead of feeding the canvas. */
+@media (hover: none), (pointer: coarse) {
+  .fluid-canvas-layer {
+    pointer-events: none;
+  }
+}
+
 .fluid-canvas {
   width: 100%;
   height: 100%;

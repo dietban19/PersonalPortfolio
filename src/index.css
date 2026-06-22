@@ -111,6 +111,13 @@
   --text-apple-hero-sub--line-height: 1.2105263158;
   --text-apple-hero-sub--letter-spacing: 0.012em;
 
+  --text-apple-hero-sub-md: 24px;
+  --text-apple-hero-sub-md--line-height: 1.16666667;
+  --text-apple-hero-sub-md--letter-spacing: 0.009em;
+  --text-apple-hero-sub-lg: 28px;
+
+  --text-apple-hero-sub-lg--line-height: 1.1428571429;
+  --text-apple-hero-sub-lg--letter-spacing: 0.007em;
   /* Keep your Inter handles as options if you want them on stand-by */
   --font-inter-text: 'Inter', sans-serif;
   --font-inter-display: 'Inter Tight', sans-serif;
@@ -121,6 +128,11 @@
    ========================================================================== */
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
   :root {
     color: #111827;
     background-color: #ffffff;
@@ -143,6 +155,10 @@
     background:
       radial-gradient(circle at top, #f7f9fb 0%, #ffffff 45%),
       linear-gradient(180deg, #ffffff 0%, #fbfbfc 100%);
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
   }
 
   a {

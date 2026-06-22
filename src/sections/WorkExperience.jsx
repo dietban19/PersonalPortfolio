@@ -34,7 +34,7 @@ function WorkItem({ job, index }) {
   return (
     <article
       ref={ref}
-      className={`relative z-10 flex justify-center pt-10 md:pt-24 md:gap-10 transition-all duration-700 ease-out motion-reduce:transition-none ${
+      className={` relative z-10 flex justify-center pt-10 md:pt-24 md:gap-10 transition-all duration-700 ease-out motion-reduce:transition-none ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
       }`}
       style={{
@@ -97,11 +97,11 @@ function WorkItem({ job, index }) {
               }}
             >
               <div>
-                <h1 className="font-semibold text-3xl">{job.position}</h1>
+                <h1 className="font-semibold text-3xl  ">{job.position}</h1>
 
                 <p className="my-5 text-white-50">{job.duration}</p>
 
-                <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
+                <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50 ">
                   {job.description.map((point, pointIndex) => (
                     <li key={pointIndex}>{point}</li>
                   ))}
@@ -180,7 +180,7 @@ function WorkExperience() {
     <section>
       <div
         ref={containerRef}
-        className="relative max-w-7xl mx-auto pb-20 text-white pt-20 isolate"
+        className="font-display relative max-w-7xl mx-auto pb-20 text-white pt-20 isolate"
       >
         {work.map((job, index) => (
           <WorkItem

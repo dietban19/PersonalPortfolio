@@ -1,8 +1,8 @@
 const links = {
-  email: 'dieter.banaag19@gmail.com',
-  github: 'https://github.com/your-username',
-  linkedin: 'https://linkedin.com/in/your-username',
-  resume: '/resume.pdf',
+  email: 'contact@dieterbanaag.ca',
+  github: 'https://github.com/dietban19',
+  linkedin: 'https://www.linkedin.com/in/dieter-banaag-a76a5622b/',
+  resume: '/ResumeNew.pdf',
 };
 
 export default links;
