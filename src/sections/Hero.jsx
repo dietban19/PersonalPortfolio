@@ -3,10 +3,10 @@ import Button from '../components/Button';
 
 function Hero() {
   return (
-    <div className="flex justify-center flex-col items-center text-white  h-full">
-      <div className="text-secondary-txt-dark font-sf-display">Hi, I'm</div>
+    <div className="flex  flex-col items-center text-white  ">
+      <div className="text-secondary-txt-dark font-display">Hi, I'm</div>
 
-      <h1 className="text-4xl  sm:text-5xl font-sf-display ">Dieter Banaag</h1>
+      <h1 className="text-4xl  sm:text-5xl font-display ">Dieter Banaag</h1>
       <h2 className="text-sf-text text-3xl font-light">Software Engineer</h2>
 
       <p className="mt-4 text-lg text-white font-thin sm:text-xl text-center">

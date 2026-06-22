@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar';
+import Section from './components/Section';
 import Contact from './sections/Contact';
 import Hero from './sections/Hero';
 import Projects from './sections/Projects';
@@ -23,26 +24,67 @@ const projects = [
   },
 ];
 
+const sections = [
+  {
+    id: 'about',
+    title: 'Skills',
+    header: 'Tools and Technologies I use to build software.',
+    subtext:
+      'From full-stack development to automation and internal tools, I work across the technologies needed to build end-to-end solutions',
+    bgColor: 'bg-secondary',
+    component: <Skills />,
+  },
+  {
+    id: 'projects',
+    title: 'Projects',
+    header: 'Selected Projects',
+    subtext: 'A selection of projects that showcase my skills and experience.',
+    bgColor: 'bg-secondary',
+
+    component: <Projects />,
+  },
+  {
+    id: 'experience',
+    title: 'Experience',
+    header: 'Work Experience',
+    subtext: 'A summary of my professional experience and accomplishments.',
+    bgColor: 'bg-secondary',
+    component: <WorkExperience />,
+  },
+  {
+    id: 'contact',
+    title: 'Contact',
+    header: 'Get in Touch',
+    subtext:
+      'Feel free to reach out for collaborations or just a friendly chat!',
+    bgColor: 'bg-secondary',
+    component: <Contact />,
+  },
+];
+
 function App() {
   return (
-    <main className="relative mx-auto min-h-screen w-full max-w-6xl px-4 pb-16 pt-24 sm:px-10 sm:pt-28 lg:px-16 bg-black">
+    <main className="relative mx-auto min-h-screen w-full max-w-6xl pb-16   sm:pt-28  bg-black">
       <Navbar />
       <div>
-        <section id="home" className="scroll-mt-28 py-8 sm:py-10">
+        <section
+          id="home"
+          className="h-screen  flex items-center justify-center"
+        >
           <Hero />
         </section>
-        <section id="about" className="scroll-mt-28 py-8 sm:py-10">
-          <Skills />
-        </section>
-        <section id="projects" className="scroll-mt-28 py-8 sm:py-10">
-          <Projects />
-        </section>
-        <section className="scroll-mt-28 py-8 sm:py-10">
-          <WorkExperience />
-        </section>
-        <section id="contact" className="scroll-mt-28 py-8 sm:py-10">
-          <Contact />
-        </section>
+        {sections.map((section) => (
+          <Section
+            key={section.id}
+            id={section.id}
+            title={section.title}
+            header={section.header}
+            subtext={section.subtext}
+            bgColor={section.bgColor}
+          >
+            {section.component}
+          </Section>
+        ))}
       </div>
     </main>
   );

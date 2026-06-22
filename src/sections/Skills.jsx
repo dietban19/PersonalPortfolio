@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon } from '@iconify/react';
 
 function Skills() {
   const skills = [
@@ -65,7 +66,34 @@ function Skills() {
       ],
     },
   ];
-  return <div>Skills</div>;
+
+  return (
+    <div className="font-display max-w-6xl mx-auto py-8">
+      {/* Outer grid for the skill categories */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {skills.map((group) => (
+          <section key={group.type} className="">
+            <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-2">
+              {group.type}
+            </h3>
+
+            {/* Inner flex layout to hold the badges wrap safely on small screens */}
+            <div className="flex flex-wrap gap-2">
+              {group.list.map((skill) => (
+                <div
+                  key={skill.name}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors border border-slate-100 bg-slate-50 text-slate-700 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+                >
+                  <Icon icon={skill.icon} className="w-5 h-5 flex-shrink-0" />
+                  <span>{skill.name}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default Skills;

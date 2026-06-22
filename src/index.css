@@ -77,10 +77,19 @@
   --color-secondary-txt: #111827;
   --color-secondary-txt-dark: #c3c3c3;
   --color-sf-blue: #0071e3;
-  --font-sans: 'Inter', sans-serif; /* Default / Body / SF Text */
-  --font-display: 'Inter Tight', sans-serif; /* Headings / SF Display */
-  --font-sf-text: 'SF Pro Text', -apple-system, sans-serif;
-  --font-sf-dis: 'SF Pro Display', -apple-system, sans-serif;
+  --default-font-family:
+    ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mont: 'Montserrat', sans-serif;
+
+  /* Make SF Pro Text your universal default font across Tailwind components */
+  --font-sans: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display:
+    'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Keep your Inter handles as options if you want them on stand-by */
+  --font-inter-text: 'Inter', sans-serif;
+  --font-inter-display: 'Inter Tight', sans-serif;
 }
 
 /* ==========================================================================
@@ -91,20 +100,15 @@
   :root {
     color: #111827;
     background-color: #ffffff;
-    font-family:
-      'SF Pro Display',
-      'SF Pro Text',
-      -apple-system,
-      BlinkMacSystemFont,
-      'Helvetica Neue',
-      'Segoe UI',
-      sans-serif;
+
+    /* Let the browser fall back onto the default system/React sans stack */
+    font-family: var(--default-font-family);
+
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
   * {
     box-sizing: border-box;
   }
