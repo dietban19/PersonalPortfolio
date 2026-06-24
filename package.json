@@ -12,8 +12,12 @@
   "dependencies": {
     "@iconify/react": "^6.0.2",
     "@microsoft/clarity": "^1.0.2",
+    "@react95/fonts": "^1.0.1",
+    "@react95/icons": "^2.5.0",
+    "canvas-confetti": "^1.9.4",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
+    "react-router-dom": "^7.18.0",
     "webgl-fluid": "^0.4.0"
   },
   "devDependencies": {

@@ -1,0 +1,129 @@
+import { useState } from 'react';
+import Navbar from '../components/Navbar';
+import Section from '../components/Section';
+import AllProjects from '../sections/AllProjects';
+import Contact from '../sections/Contact';
+import Footer from '../sections/Footer';
+import Hero from '../sections/Hero';
+import ProjectDetail from '../sections/ProjectDetail';
+import Projects from '../sections/Projects';
+import Skills from '../sections/Skills';
+import WorkExperience from '../sections/WorkExperience';
+import FluidContainer from '../components/Fluids/FluidContainer';
+import ContactForm from '../components/ContactForm';
+import useKonamiCode from '../easter_eggs/useKonamiCode';
+import KonamiOverlay from '../easter_eggs/KonamiOverlay';
+import fireKonamiConfetti from '../easter_eggs/fireKonamiConfetti';
+
+function LandingPage() {
+  const [showAllProjects, setShowAllProjects] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [showKonamiEgg, setShowKonamiEgg] = useState(false);
+  useKonamiCode(() => {
+    fireKonamiConfetti();
+  });
+  const sections = [
+    {
+      id: 'skills',
+      title: 'Skills',
+      header: 'Tools and Technologies I use to build software.',
+      subtext:
+        'From full-stack development to automation and internal tools, I work across the technologies needed to build end-to-end solutions',
+      bgColor: 'bg-white',
+      component: <Skills />,
+      padding: true,
+    },
+    {
+      id: 'projects',
+      title: 'Projects',
+      header: 'Selected Projects',
+      subtext:
+        'A few projects that reflect my work across full-stack development, automation, and internal tools.',
+      bgColor: 'bg-secondary',
+      padding: true,
+      component: (
+        <Projects
+          onSeeAll={() => setShowAllProjects(true)}
+          onOpenProject={setSelectedProject}
+        />
+      ),
+    },
+    {
+      id: 'experience',
+      title: 'Career Overview',
+      header: 'Work Experience',
+      subtext:
+        'A track record of building software solutions, improving processes, and delivering real impact',
+      bgColor: 'bg-black',
+      component: <WorkExperience />,
+      padding: false,
+      fluids: true,
+    },
+    // {
+    //   id: 'contact',
+    //   title: '',
+    //   header: '',
+    //   subtext: '',
+    //   bgColor: 'bg-secondary',
+    //   component: <Contact />,
+    // },
+  ];
+
+  return (
+    <main className="relative mx-auto min-h-screen w-full  bg-black">
+      {/* <Navbar /> */}
+      <Navbar />
+
+      <div>
+        <FluidContainer>
+          <section
+            id="home"
+            className="h-screen flex items-center justify-center"
+          >
+            <Hero />
+          </section>
+        </FluidContainer>
+        {sections.map((section) => (
+          <Section
+            key={section.id}
+            id={section.id}
+            title={section.title}
+            header={section.header}
+            subtext={section.subtext}
+            bgColor={section.bgColor}
+            padding={section?.padding}
+            fluids={section?.fluids}
+          >
+            {section.component}
+          </Section>
+        ))}
+        <section
+          id="contact"
+          className="h-screen flex items-center justify-center bg-white"
+        >
+          <Contact />
+        </section>
+      </div>
+
+      <FluidContainer>
+        <Footer />
+      </FluidContainer>
+
+      {showAllProjects && (
+        <AllProjects onClose={() => setShowAllProjects(false)} />
+      )}
+
+      {selectedProject && !showAllProjects && (
+        <ProjectDetail
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
+      {showKonamiEgg && (
+        <KonamiOverlay onClose={() => setShowKonamiEgg(false)} />
+      )}
+    </main>
+  );
+}
+
+export default LandingPage;

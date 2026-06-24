@@ -69,6 +69,63 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'W95FA';
+  src:
+    url('./assets/fonts/w95fa.woff2') format('woff2'),
+    url('./assets/fonts/w95fa.woff') format('woff'),
+    url('./assets/fonts/W95FA.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Ari-W9500';
+  src: url('assets/fonts/ari-w9500.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ari-W9500';
+  src: url('assets/fonts/ari-w9500-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ari-W9500 Condensed';
+  src: url('assets/fonts/ari-w9500-condensed.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ari-W9500 Condensed';
+  src: url('assets/fonts/ari-w9500-condensed-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ari-W9500 Display';
+  src: url('assets/fonts/ari-w9500-display.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ari-W9500 Condensed Display';
+  src: url('assets/fonts/ari-w9500-condensed-display.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 .pp {
   color: #c3c3c3;
 }
@@ -96,6 +153,13 @@
   --font-apple-display:
     'SF Pro Display', 'SF Pro Icons', 'Helvetica Neue', Helvetica, Arial,
     sans-serif;
+  --font-win95: 'W95FA', 'MS Sans Serif', sans-serif;
+  --font-ari95: 'Ari-W9500', 'W95FA', sans-serif;
+  --font-win95-bold: 'R95 Sans Serif 8pt', 'W95FA', sans-serif;
+  --font-win95-condensed: 'Ari-W9500 Condensed', 'Ari-W9500', sans-serif;
+  --font-win95-display: 'Ari-W9500 Display', 'Ari-W9500', sans-serif;
+  --font-win95-condensed-display:
+    'Ari-W9500 Condensed Display', 'Ari-W9500 Condensed', sans-serif;
 
   --text-apple-hero: 2rem;
   --text-apple-hero--line-height: 1.125;
@@ -121,6 +185,10 @@
   /* Keep your Inter handles as options if you want them on stand-by */
   --font-inter-text: 'Inter', sans-serif;
   --font-inter-display: 'Inter Tight', sans-serif;
+
+  --color-windows-bg: #53a8a8;
+  --color-windows-header-bg: #0000a8;
+  --color-windows-popup: #c0c4c8;
 }
 
 /* ==========================================================================
