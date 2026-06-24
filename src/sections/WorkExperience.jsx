@@ -97,7 +97,7 @@ function WorkItem({ job, index }) {
               }}
             >
               <div>
-                <h1 className="font-semibold text-3xl  ">{job.position}</h1>
+                <h1 className="font-s`emibold text-3xl  ">{job.position}</h1>
 
                 <p className="my-5 text-white-50">{job.duration}</p>
 
@@ -128,12 +128,14 @@ function WorkExperience() {
       img: '/images/p&g.png',
     },
     {
-      company: 'Mercedes & Singh',
+      company: 'Mercedes and Singh',
       position: 'Software Developer Intern',
       duration: 'May 2024 - Dec 2024',
       description: [
-        'Built automation workflows using Java, Python, and Selenium, reducing onboarding and offboarding processing time from 20 minutes to 3 minutes per employee.',
-        'Automated internal processes, reporting tools, and test coverage improvements to reduce manual work and improve reliability.',
+        'Built a SaaS residential design platform using React, Three.js, and ArcGIS, including interactive 3D visualization and geospatial site-selection tools.',
+        'Developed a separate React Native mobile app with a polished cross-platform user experience, real-time data flows, and production-ready frontend architecture.',
+        'Integrated GeoJSON, Firebase authentication, and secure database design to support accurate design decisions and reliable user access.',
+        'Automated permit-ready file generation, reducing design timelines by 6x.',
       ],
       img: '/images/mercedes_singh.png',
     },

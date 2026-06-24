@@ -29,7 +29,8 @@ function useInView(options = {}) {
 
   return [ref, isVisible];
 }
-
+//     dark:border-slate-800  dark:text-slate-100
+//  //  dark:border-slate-800 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700
 function SkillGroup({ group, index }) {
   const [ref, isVisible] = useInView();
 
@@ -43,7 +44,12 @@ function SkillGroup({ group, index }) {
         transitionDelay: `${index * 90}ms`,
       }}
     >
-      <h3 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-2">
+      <h3
+        className="text-lg font-semibold mb-4 text-slate-800 
+ border-b
+       border-slate-100 
+       pb-2"
+      >
         {group.type}
       </h3>
 
@@ -52,17 +58,22 @@ function SkillGroup({ group, index }) {
           <div
             key={skill.name}
             /* Add 'skill-card' to the classes string below, and remove id="skill-icon" */
-            className={`cursor-pointer skill-card relative flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium border border-slate-100  text-slate-700 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 transition-all duration-500 ease-out motion-reduce:transition-none ${
-              isVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-3'
-            }`}
+            className={`cursor-pointer skill-card relative flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium border border-slate-100  text-slate-700 hover:bg-slate-100
+             
+               transition-all duration-500 ease-out motion-reduce:transition-none ${
+                 isVisible
+                   ? 'opacity-100 translate-y-0'
+                   : 'opacity-0 translate-y-3'
+               }`}
             data-info={skill.name}
             style={{
               transitionDelay: `${index * 90 + skillIndex * 35}ms`,
             }}
           >
-            <Icon icon={skill.icon} className="w-5 h-5 flex-shrink-0" />
+            <Icon
+              icon={skill.icon}
+              className="w-5 h-5 sm:w-8 sm:h-8  lg:h-12 md:lg-12 shrink-0"
+            />
           </div>
         ))}
       </div>
@@ -77,9 +88,12 @@ function Skills() {
       list: [
         { name: 'Java', icon: 'devicon:java' },
         { name: 'Python', icon: 'devicon:python' },
-        { name: 'C/C++', icon: 'devicon:cplusplus' },
+        { name: 'C', icon: 'devicon:c' },
+        { name: 'C++', icon: 'devicon:cplusplus' },
         { name: 'SQL', icon: 'mdi:database' },
-        { name: 'JavaScript/TypeScript', icon: 'logos:javascript' },
+        { name: 'JavaScript', icon: 'logos:javascript' },
+        { name: 'TypeScript', icon: 'logos:typescript' },
+
         { name: 'HTML/CSS', icon: 'devicon:html5' },
       ],
     },
@@ -100,6 +114,8 @@ function Skills() {
       type: 'Cloud & Tools',
       list: [
         { name: 'AWS', icon: 'devicon:amazonwebservices-wordmark' },
+        { name: 'Google Cloud', icon: 'devicon:googlecloud' },
+
         { name: 'Docker', icon: 'devicon:docker' },
         { name: 'Git', icon: 'devicon:git' },
         { name: 'Firebase', icon: 'devicon:firebase' },
