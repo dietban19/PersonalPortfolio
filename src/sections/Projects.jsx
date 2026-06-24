@@ -52,7 +52,7 @@ function ProjectModal({ project, onClose }) {
       {/* Fixed Close Button - Accessible on both mobile and desktop */}
       <button
         onClick={onClose}
-        className="fixed right-5 top-5 z-[60] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-[#e5e5ea]/80 text-[#1d1d1f] backdrop-blur-md transition-colors hover:bg-[#d1d1d6] md:right-8 md:top-8 md:h-10 md:w-10"
+        className="fixed right-5 top-5 z-60 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-[#e5e5ea]/80 text-[#1d1d1f] backdrop-blur-md transition-colors hover:bg-[#d1d1d6] md:right-8 md:top-8 md:h-10 md:w-10"
         aria-label="Close"
       >
         <svg
@@ -78,7 +78,7 @@ function ProjectModal({ project, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Responsive Hero Image */}
-        <div className="mb-8 h-[40vh] min-h-[220px] w-full overflow-hidden rounded-[24px] bg-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] md:mb-12 md:h-[45vh] md:min-h-[350px] md:rounded-[32px]">
+        <div className="mb-8 h-[40vh] min-h-55 w-full overflow-hidden rounded-3xl bg-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] md:mb-12 md:h-[45vh] md:min-h-87.5 md:rounded-4xl">
           <img
             src={project.image}
             alt={project.name}
@@ -141,14 +141,14 @@ function ProjectCard({ project, index, onOpen }) {
   return (
     <article
       ref={ref}
-      className={`font-sans overflow-hidden rounded-4xl bg-white p-4 pb-7 shadow-[0_0px_10px_rgba(0,0,0,0.01)] transition-all duration-700 ease-out motion-reduce:transition-none ${
+      className={`font-sans overflow-hidden rounded-4xl bg-white p-4 pb-7 shadow-[0_0px_10px_rgba(0,0,0,0.01)] transition-all duration-700 ease-out motion-reduce:transition-none sm:p-5 lg:p-6 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
       }`}
       style={{
         transitionDelay: `${index * 120}ms`,
       }}
     >
-      <div className="h-50 w-full overflow-hidden rounded-[18px] bg-slate-100">
+      <div className="aspect-16/10 w-full overflow-hidden rounded-[18px] bg-slate-100">
         <img
           src={project.image}
           alt={project.name}
@@ -156,30 +156,33 @@ function ProjectCard({ project, index, onOpen }) {
         />
       </div>
 
-      <div className="pt-8">
-        <h3 className="mb-2 text-[22px] font-medium leading-tight tracking-[-0.03em] text-black">
+      <div className="pt-6 sm:pt-7 lg:pt-8">
+        <h3 className="mb-2 text-[20px] font-medium leading-tight tracking-[-0.03em] text-black sm:text-[21px] lg:text-[22px]">
           {project.name}
         </h3>
 
         {/* Truncated Text */}
-        <p className="line-clamp-2 max-w-[92%] text-sm leading-snug text-neutral-500">
+        {/* Truncated Text */}
+        <p
+          className="max-w-[92%] overflow-hidden text-[13px] leading-snug text-neutral-500 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] sm:text-sm"
+          title={project.description}
+        >
           {project.description}
         </p>
-
         {/* See More Link (Apple Blue) */}
         <button
           onClick={() => onOpen(project)}
           className="mt-1 flex cursor-pointer items-center gap-0.5 text-[14px] font-normal text-[#0071e3] transition-opacity hover:opacity-70"
         >
           Read more{' '}
-          <span className="-translate-y-[1px] text-[18px] leading-none">›</span>
+          <span className="-translate-y-px text-[18px] leading-none">›</span>
         </button>
 
-        <ul className="mt-8 mb-2 flex flex-wrap gap-2.5">
+        <ul className="mt-6 mb-2 flex flex-wrap gap-2 sm:mt-7">
           {project.skills.map((skill) => (
             <li
               key={skill}
-              className="rounded-full border border-neutral-300 bg-white px-3 py-1.5 text-[13px] text-neutral-700"
+              className="rounded-full border border-neutral-300 bg-white px-3 py-1.5 text-[11px] leading-none text-neutral-700"
             >
               {skill}
             </li>
@@ -222,7 +225,7 @@ function Projects({ onSeeAll }) {
 
   return (
     <section className="min-h-screen">
-      <div className="mx-auto grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto grid gap-8 grid-cols-[repeat(auto-fit,minmax(280px,1fr))]">
         {featuredProjects.map((project, index) => (
           <ProjectCard
             key={project.id}

@@ -39,7 +39,7 @@ function AllProjectCard({ project, index, onOpen }) {
       }`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
-      <div className="relative h-55 w-full overflow-hidden bg-neutral-100">
+      <div className="relative aspect-16/10 w-full overflow-hidden bg-neutral-100">
         <img
           src={project.image}
           alt={project.name}
@@ -63,7 +63,7 @@ function AllProjectCard({ project, index, onOpen }) {
           {project.skills.map((skill) => (
             <li
               key={skill}
-              className="rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-[12px] font-medium text-neutral-600"
+              className="rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-[11px] font-medium text-neutral-600"
             >
               {skill}
             </li>
@@ -155,7 +155,7 @@ function AllProjects({ onClose }) {
           </div>
 
           {/* Grid */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(280px,1fr))]">
             {projects.map((project, index) => (
               <AllProjectCard
                 key={project.id}
