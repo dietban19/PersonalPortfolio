@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import projects from '../data/projects';
 import { trackClarityEvent } from '../lib/clarityTracking';
-
+import { Icon } from '@iconify/react';
 function useInView() {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -47,6 +47,9 @@ function ProjectModal({ project, onClose }) {
 
   return (
     <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-modal-title"
       className="fixed inset-0 z-50 overflow-y-auto bg-white/85 backdrop-blur-3xl transition-all duration-500"
       onClick={onClose}
     >
@@ -54,23 +57,9 @@ function ProjectModal({ project, onClose }) {
       <button
         onClick={onClose}
         className="fixed right-5 top-5 z-60 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-[#e5e5ea]/80 text-[#1d1d1f] backdrop-blur-md transition-colors hover:bg-[#d1d1d6] md:right-8 md:top-8 md:h-10 md:w-10"
-        aria-label="Close"
+        aria-label={`Close ${project.name} project details`}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth="2.5"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
+        <Icon icon="material-symbols:close" />
       </button>
 
       {/* Main Content Container - Adjusted padding for mobile vs desktop */}
@@ -79,11 +68,11 @@ function ProjectModal({ project, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Responsive Hero Image */}
-        <div className="mb-8 h-[40vh] min-h-55 w-full overflow-hidden rounded-3xl bg-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] md:mb-12 md:h-[45vh] md:min-h-87.5 md:rounded-4xl">
+        <div className="mb-8 h-[40vh] min-h-55 md:px-8 ld:px-48 w-full overflow-hidden rounded-3xl bg-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] md:mb-12 md:h-[45vh] md:min-h-87.5 md:rounded-4xl">
           <img
             src={project.image}
             alt={project.name}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-fit"
           />
         </div>
 
@@ -142,7 +131,13 @@ function ProjectCard({ project, index, onOpen }) {
   return (
     <article
       ref={ref}
-      className={`font-sans overflow-hidden rounded-4xl bg-white p-4 pb-7 shadow-[0_0px_10px_rgba(0,0,0,0.01)] transition-all duration-700 ease-out motion-reduce:transition-none sm:p-5 lg:p-6 ${
+      aria-label={`Project card for ${project.name}. Click to read more.`}
+      onClick={() => onOpen(project)}
+      role="button"
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') onOpen(project);
+      }}
+      className={`hover:shadow-md cursor-pointer font-sans overflow-hidden rounded-4xl bg-white p-4 pb-7 shadow-[0_0px_10px_rgba(0,0,0,0.01)] transition-all duration-700 ease-out motion-reduce:transition-none sm:p-5 lg:p-6 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
       }`}
       style={{
@@ -152,7 +147,7 @@ function ProjectCard({ project, index, onOpen }) {
       <div className="aspect-16/10 w-full overflow-hidden rounded-[18px] bg-slate-100">
         <img
           src={project.image}
-          alt={project.name}
+          alt={`${project.name}`}
           className="h-full w-full object-cover transition-transform duration-500 ease-out hover:scale-[1.03] motion-reduce:transition-none"
         />
       </div>
@@ -176,6 +171,7 @@ function ProjectCard({ project, index, onOpen }) {
             trackClarityEvent('project_card_open');
             onOpen(project);
           }}
+          aria-label={`Read more about ${project.name}`}
           className="mt-1 flex cursor-pointer items-center gap-0.5 text-[14px] font-normal text-[#0071e3] transition-opacity hover:opacity-70"
         >
           Read more{' '}

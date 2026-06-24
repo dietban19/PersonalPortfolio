@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { trackClarityEvent } from '../lib/clarityTracking';
+import { Icon } from '@iconify/react';
 
 const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
@@ -73,10 +74,10 @@ export default function ContactForm({ onClose }) {
         <button
           type="button"
           onClick={onClose}
-          aria-label="Close contact form"
+          aria-label="Close Contact Form"
           className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-neutral-100 text-xl leading-none text-neutral-500 transition hover:bg-neutral-200 hover:text-neutral-900"
         >
-          ×
+          <Icon icon="material-symbols:close" />
         </button>
 
         <div className="mb-8 pr-10">

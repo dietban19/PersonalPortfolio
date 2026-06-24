@@ -29,7 +29,7 @@ export default function FluidContainer({ children }) {
       // Lower resolution is usually fine for a background.
       SIM_RESOLUTION: 128,
       DYE_RESOLUTION: 512,
-
+      SPLAT_COUNT: 40,
       // Higher = fades faster, so it does not cover your portfolio content.
       DENSITY_DISSIPATION: 1.8,
 

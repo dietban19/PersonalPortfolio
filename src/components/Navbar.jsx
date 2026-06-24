@@ -24,9 +24,13 @@ function Navbar() {
       </a>
 
       <button
+        id="mobile-navigation"
         type="button"
-        aria-label="Toggle navigation menu"
+        aria-label={
+          isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'
+        }
         aria-expanded={isMenuOpen}
+        aria-controls="mobile-navigation"
         onClick={() => setIsMenuOpen((prev) => !prev)}
         className="fixed right-3 top-4 z-50 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-neutral-950/80 text-white shadow-[0_10px_24px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] backdrop-blur-md transition hover:bg-neutral-900 sm:hidden"
       >
@@ -51,7 +55,10 @@ function Navbar() {
         </span>
       </button>
 
-      <nav className="hidden items-center gap-1 overflow-x-auto whitespace-nowrap sm:flex ">
+      <nav
+        aria-label="Main navigation"
+        className="hidden items-center gap-1 overflow-x-auto whitespace-nowrap sm:flex "
+      >
         {nav.map((item) => (
           <a
             key={item.title}

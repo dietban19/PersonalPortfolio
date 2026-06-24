@@ -53,30 +53,31 @@ function SkillGroup({ group, index }) {
         {group.type}
       </h3>
 
-      <div className="flex flex-wrap gap-2">
-        {group.list.map((skill, skillIndex) => (
-          <div
+      <ul className="flex flex-wrap gap-2">
+        {group.list.map((skill) => (
+          <li
             key={skill.name}
-            /* Add 'skill-card' to the classes string below, and remove id="skill-icon" */
-            className={`cursor-pointer skill-card relative flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium border border-slate-100  text-slate-700 hover:bg-slate-100
-             
-               transition-all duration-500 ease-out motion-reduce:transition-none ${
-                 isVisible
-                   ? 'opacity-100 translate-y-0'
-                   : 'opacity-0 translate-y-3'
-               }`}
-            data-info={skill.name}
-            style={{
-              transitionDelay: `${index * 90 + skillIndex * 35}ms`,
-            }}
+            tabIndex={0}
+            aria-label={skill.name}
+            aria-describedby={`skill-tooltip-${skill.name}`}
+            className="skill-card group relative flex items-center gap-2 rounded-lg border border-slate-100 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 focus:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-sf-blue"
           >
             <Icon
               icon={skill.icon}
-              className="w-5 h-5 sm:w-8 sm:h-8  lg:h-12 md:lg-12 shrink-0"
+              aria-hidden="true"
+              className="h-6 w-6 shrink-0"
             />
-          </div>
+
+            <span
+              id={`skill-tooltip-${skill.name}`}
+              role="tooltip"
+              className="pointer-events-none absolute left-0 top-full z-50 mt-2 rounded bg-slate-800 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 transition group-hover:opacity-100 group-focus:opacity-100"
+            >
+              {skill.name}
+            </span>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }
