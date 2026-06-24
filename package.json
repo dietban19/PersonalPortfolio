@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@iconify/react": "^6.0.2",
+    "@microsoft/clarity": "^1.0.2",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "webgl-fluid": "^0.4.0"

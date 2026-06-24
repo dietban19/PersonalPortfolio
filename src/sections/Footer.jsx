@@ -1,4 +1,5 @@
 import links from '../data/links';
+import { trackClarityEvent } from '../lib/clarityTracking';
 
 const nav = [
   { label: 'Home', href: '#home' },
@@ -62,6 +63,11 @@ function Footer() {
                       href={item.href}
                       target="_blank"
                       rel="noreferrer"
+                      onClick={() =>
+                        trackClarityEvent(
+                          `footer_${item.label.toLowerCase()}_click`,
+                        )
+                      }
                       className="text-sm text-white/60 transition-colors hover:text-white"
                     >
                       {item.label}
@@ -71,6 +77,7 @@ function Footer() {
                 <li>
                   <a
                     href={`mailto:${links.email}`}
+                    onClick={() => trackClarityEvent('footer_email_click')}
                     className="text-sm text-white/60 transition-colors hover:text-white"
                   >
                     Email

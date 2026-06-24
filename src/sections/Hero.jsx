@@ -1,4 +1,5 @@
 import Button from '../components/Button';
+import { trackClarityEvent } from '../lib/clarityTracking';
 
 function Hero() {
   return (
@@ -19,10 +20,20 @@ function Hero() {
         </p>
 
         <div className="mt-8 flex  gap-4 sm:flex-row">
-          <Button filled={false} white href="#skills">
+          <Button
+            filled={false}
+            white
+            href="#skills"
+            onClick={() => trackClarityEvent('hero_learn_more_click')}
+          >
             Learn More
           </Button>
-          <Button filled white={true} href="#contact">
+          <Button
+            filled
+            white={true}
+            href="#contact"
+            onClick={() => trackClarityEvent('hero_get_in_touch_click')}
+          >
             Get in Touch
           </Button>
         </div>

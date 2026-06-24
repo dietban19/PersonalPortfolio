@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import projects from '../data/projects';
+import { trackClarityEvent } from '../lib/clarityTracking';
 
 function useInView() {
   const ref = useRef(null);
@@ -171,7 +172,10 @@ function ProjectCard({ project, index, onOpen }) {
         </p>
         {/* See More Link (Apple Blue) */}
         <button
-          onClick={() => onOpen(project)}
+          onClick={() => {
+            trackClarityEvent('project_card_open');
+            onOpen(project);
+          }}
           className="mt-1 flex cursor-pointer items-center gap-0.5 text-[14px] font-normal text-[#0071e3] transition-opacity hover:opacity-70"
         >
           Read more{' '}
@@ -204,7 +208,10 @@ function SeeMoreLink({ onClick }) {
       }`}
     >
       <button
-        onClick={onClick}
+        onClick={() => {
+          trackClarityEvent('projects_see_all_click');
+          onClick();
+        }}
         className="inline-flex cursor-pointer items-center gap-1 text-sm font-medium text-[#0071e3] transition-opacity hover:opacity-70"
       >
         <span>See All Projects</span>

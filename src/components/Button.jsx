@@ -67,6 +67,7 @@ function Button({ children, filled, white, href, onClick }) {
       <a
         className={sharedClassName}
         href={href}
+        onClick={onClick}
         style={sharedStyle}
         {...sharedHoverProps}
       >

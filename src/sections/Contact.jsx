@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ContactForm from '../components/ContactForm';
 import links from '../data/links';
+import { trackClarityEvent } from '../lib/clarityTracking';
 
 function Contact() {
   const [showContactForm, setShowContactForm] = useState(false);
@@ -25,7 +26,10 @@ function Contact() {
         <div className="mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-5 font-display">
           <button
             type="button"
-            onClick={() => setShowContactForm(true)}
+            onClick={() => {
+              trackClarityEvent('contact_form_open');
+              setShowContactForm(true);
+            }}
             className="rounded-full bg-sf-blue px-8 py-3 text-base font-medium text-white transition hover:bg-blue-600"
           >
             Contact Me
@@ -35,6 +39,7 @@ function Contact() {
             href={links.resume}
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackClarityEvent('resume_click')}
             className="rounded-full border border-sf-blue px-8 py-3 text-base font-medium text-sf-blue transition hover:bg-blue-50"
           >
             View Resume
@@ -47,6 +52,7 @@ function Contact() {
           href={links.github}
           target="_blank"
           rel="noreferrer"
+          onClick={() => trackClarityEvent('github_click_contact')}
           className="inline-flex items-center gap-1 rounded-full border border-neutral-400 px-5 py-2 text-sm font-normal text-neutral-700 transition hover:bg-neutral-100"
         >
           Github
@@ -57,6 +63,7 @@ function Contact() {
           href={links.linkedin}
           target="_blank"
           rel="noreferrer"
+          onClick={() => trackClarityEvent('linkedin_click_contact')}
           className="inline-flex items-center gap-1 rounded-full border border-neutral-400 px-5 py-2 text-sm font-normal text-neutral-700 transition hover:bg-neutral-100"
         >
           LinkedIn

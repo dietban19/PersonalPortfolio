@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { trackClarityEvent } from '../lib/clarityTracking';
 
 const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
@@ -27,13 +28,12 @@ export default function ContactForm({ onClose }) {
     event.preventDefault();
     setIsSubmitting(true);
     setResult('Sending...');
-    console.log('EVENT', event.target);
+    trackClarityEvent('contact_submit_start');
     const formData = new FormData(event.target);
 
     formData.append('access_key', WEB3FORMS_ACCESS_KEY);
     formData.append('subject', 'New portfolio contact message');
     formData.append('from_name', 'Portfolio Contact Form');
-    console.log('SENDING:', Object.fromEntries(formData.entries()));
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -43,12 +43,15 @@ export default function ContactForm({ onClose }) {
       const data = await response.json();
 
       if (data.success) {
+        trackClarityEvent('contact_submit_success');
         setResult('Form submitted successfully.');
         event.target.reset();
       } else {
+        trackClarityEvent('contact_submit_error');
         setResult(data.message || 'Error. Please try again.');
       }
     } catch {
+      trackClarityEvent('contact_submit_error');
       setResult('Error. Please try again.');
     } finally {
       setIsSubmitting(false);

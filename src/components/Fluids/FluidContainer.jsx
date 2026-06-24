@@ -1,5 +1,9 @@
 import { useEffect, useRef } from 'react';
 import WebGLFluid from 'webgl-fluid';
+import {
+  trackClarityEvent,
+  trackClarityEventOnce,
+} from '../../lib/clarityTracking';
 import './FluidContainer.css';
 
 export default function FluidContainer({ children }) {
@@ -10,6 +14,7 @@ export default function FluidContainer({ children }) {
     pendingPoint: null,
     rafId: null,
   });
+  const hoverStartedAtRef = useRef(null);
 
   useEffect(() => {
     if (!canvasRef.current || hasStarted.current) return;
@@ -122,6 +127,9 @@ export default function FluidContainer({ children }) {
     const onTouchStart = (event) => {
       const touch = event.touches[0] || event.changedTouches[0];
       if (!touch) return;
+
+      trackClarityEventOnce('fluid_touch_interaction');
+
       const canvas = canvasRef.current;
       if (canvas) {
         canvas.dispatchEvent(
@@ -174,6 +182,44 @@ export default function FluidContainer({ children }) {
       if (state.rafId !== null) {
         window.cancelAnimationFrame(state.rafId);
       }
+    };
+  }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const onMouseEnter = () => {
+      hoverStartedAtRef.current = Date.now();
+      trackClarityEventOnce('fluid_hover_start');
+    };
+
+    const onMouseLeave = () => {
+      if (!hoverStartedAtRef.current) return;
+
+      const hoverDuration = Date.now() - hoverStartedAtRef.current;
+      hoverStartedAtRef.current = null;
+
+      if (hoverDuration >= 5000) {
+        trackClarityEventOnce('fluid_hover_5s');
+      } else if (hoverDuration >= 2000) {
+        trackClarityEventOnce('fluid_hover_2s');
+      }
+    };
+
+    const onMouseDown = () => {
+      trackClarityEvent('fluid_mouse_down');
+      trackClarityEventOnce('fluid_interaction');
+    };
+
+    canvas.addEventListener('mouseenter', onMouseEnter);
+    canvas.addEventListener('mouseleave', onMouseLeave);
+    canvas.addEventListener('mousedown', onMouseDown);
+
+    return () => {
+      canvas.removeEventListener('mouseenter', onMouseEnter);
+      canvas.removeEventListener('mouseleave', onMouseLeave);
+      canvas.removeEventListener('mousedown', onMouseDown);
     };
   }, []);
 
