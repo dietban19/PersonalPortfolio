@@ -1,10 +1,11 @@
 import Clarity from '@microsoft/clarity';
 
 const hasClarityId = Boolean(import.meta.env.VITE_CLARITY_ID);
+const clarityEnabled = import.meta.env.VITE_ENABLE_CLARITY === 'true';
 const trackedOnceEvents = new Set();
 
 export function trackClarityEvent(eventName) {
-  if (!hasClarityId || !eventName) return;
+  if (!clarityEnabled || !hasClarityId || !eventName) return;
 
   try {
     Clarity.event(eventName);

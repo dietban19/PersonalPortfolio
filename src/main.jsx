@@ -5,8 +5,9 @@ import './index.css';
 import App from './App.jsx';
 
 const clarityId = import.meta.env.VITE_CLARITY_ID;
+const clarityEnabled = import.meta.env.VITE_ENABLE_CLARITY === 'true';
 
-if (clarityId) {
+if (clarityEnabled && clarityId) {
   Clarity.init(clarityId);
 }
 
